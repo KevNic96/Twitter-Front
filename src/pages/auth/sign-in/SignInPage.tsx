@@ -10,7 +10,7 @@ import { ButtonType } from "../../../components/button/StyledButton";
 import { StyledH3 } from "../../../components/common/text";
 
 const SignInPage = () => {
-  const [email, setEmail] = useState("");
+  const [user, setUser] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(false);
 
@@ -19,8 +19,12 @@ const SignInPage = () => {
   const { t } = useTranslation();
 
   const handleSubmit = () => {
+    const RegexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const isEmail = RegexEmail.test(user)
+    const inputData = isEmail ? { email: user, password} : { username: user, password};
+    console.log(inputData)
     httpRequestService
-      .signIn({ email, password })
+      .signIn(inputData)
       .then(() => navigate("/"))
       .catch(() => setError(true));
   };
@@ -36,10 +40,10 @@ const SignInPage = () => {
           <div className={"input-container"}>
             <LabeledInput
               required
-              placeholder={"Enter user..."}
-              title={t("input-params.username")}
+              placeholder={"Enter email..."}
+              title={t("input-params.email")}
               error={error}
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={(e) => setUser(e.target.value)}
             />
             <LabeledInput
               type="password"
