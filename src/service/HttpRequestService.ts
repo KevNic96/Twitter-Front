@@ -1,9 +1,14 @@
 import type { PostData, SingInData, SingUpData } from "./index";
 import axios from "axios";
 import { S3Service } from "./S3Service";
+import { AxiosInterceptor } from "./Interceptors/axios.interceptors";
+
+AxiosInterceptor();
 
 const url =
   process.env.REACT_APP_API_URL || "https://twitter-ieea.onrender.com/api";
+
+const axiosInstance = axios.create()
 
 const httpRequestService = {
   signUp: async (data: Partial<SingUpData>) => {
@@ -329,6 +334,57 @@ const httpRequestService = {
       return res.data;
     }
   },
+
+  //Se crea para verificar el token Punto 1)
+  verifyToken: async(token: string) =>{
+    const res = await axios.post(`${url}/auth/verifyToken`, {token})
+    console.log(res)
+    if(res.status === 200)
+    {
+      return res.data.isLogged
+    }
+
+    return false
+  },
+
+  // Se crea para subir una imagen a un post Punto 2)
+  uploadPostImage: async (file: File) => {
+    const res = await axios.get(`${url}/post/image/presignedUrl`, {
+      params: {
+        filetype: file.type,
+      },
+    });
+    if (res.status === 200) {
+      const presignedUrl = res.data.presignedUrl;
+      const imageUrl = res.data.fileUrl;
+
+      try {
+        const uploadResponse = await axiosInstance.put(presignedUrl, file, { //Interceptor punto 4)
+          headers: {
+            "Content-Type": file.type,
+          },
+        });
+        if (uploadResponse.status === 200) {
+          return imageUrl;
+        }
+      } catch (err) {
+        console.error(err);
+      }
+    }
+  },
+
+  createComment: async(data: PostData) =>{
+    const res = await axios.post(`${url}/comment/${data.parentId}`,{
+      content: data.content,
+      image: data.images
+    });
+    if(res.status === 201)
+    {
+      return res.data
+    }
+  }
+
+
 };
 
 const useHttpRequestService = () => httpRequestService;

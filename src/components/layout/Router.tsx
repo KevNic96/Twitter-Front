@@ -1,5 +1,5 @@
-import React from "react";
-import { createBrowserRouter, Outlet } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { createBrowserRouter, Outlet, Navigate } from "react-router-dom";
 import { StyledSideBarPageWrapper } from "../../pages/side-bar-page/SideBarPageWrapper";
 import NavBar from "../navbar/NavBar";
 import SignUpPage from "../../pages/auth/sign-up/SignUpPage";
@@ -10,7 +10,9 @@ import ProfilePage from "../../pages/profile/ProfilePage";
 import TweetPage from "../../pages/create-tweet-page/TweetPage";
 import CommentPage from "../../pages/create-comment-page/CommentPage";
 import PostPage from "../../pages/post-page/PostPage";
+import { useHttpRequestService } from "../../service/HttpRequestService";
 
+/*
 const WithNav = () => {
   return (
     <StyledSideBarPageWrapper>
@@ -19,6 +21,47 @@ const WithNav = () => {
     </StyledSideBarPageWrapper>
   );
 };
+*/
+
+const WithNav = () => {
+  const token = localStorage.getItem("token")?.split(" ")[1]
+  const service = useHttpRequestService()
+  const [isValid, setIsValid ] = useState(true)
+  // const [loading, setLoading] = useState(true)
+  useEffect(() => {
+    if (token) {
+      service.verifyToken(token)
+        .then(res => {
+          console.log(res)
+          res ? setIsValid(true) : setIsValid(false)
+        })
+        .catch(e => {
+          setIsValid(false)
+        })
+    } else {
+      setIsValid(false)
+    }
+    // setLoading(false)
+  }, [])
+
+  return (
+    <>
+      {/* {loading && <Loader />} Agregar loading */}
+      {isValid &&  // Agregar loading
+      <>
+        <StyledSideBarPageWrapper>
+          <NavBar />
+          <Outlet />
+        </StyledSideBarPageWrapper>
+      </>}
+      {!isValid && <Navigate to="/sign-in" replace={true} />} 
+      {/* Agregar loading */}
+    </>
+  );
+};
+
+
+
 
 export const ROUTER = createBrowserRouter([
   {

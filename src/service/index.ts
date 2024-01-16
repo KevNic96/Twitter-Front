@@ -27,6 +27,10 @@ export interface Post {
   author: Author;
   reactions: Reaction[];
   comments: Post[];
+  //
+  qtyComments: number;
+  qtyLikes: number;
+  qtyRetweets: number;
 }
 
 export interface Reaction {
@@ -52,7 +56,7 @@ export interface User {
   name?: string;
   username: string;
   profilePicture?: string;
-  private: boolean;
+  isPrivate: boolean;
   createdAt: Date;
   followers: Author[];
   following: Author[];
