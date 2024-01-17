@@ -3,6 +3,8 @@ import { StyledInputContainer } from "./InputContainer";
 import { StyledInputTitle } from "./InputTitle";
 import { StyledInputElement } from "./StyledInputElement";
 
+
+//Punto 6)
 interface InputWithLabelProps {
   type?: "password" | "text";
   title: string;

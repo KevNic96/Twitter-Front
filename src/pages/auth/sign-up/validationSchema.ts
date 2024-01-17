@@ -1,5 +1,7 @@
 import * as yup from 'yup';
 
+// Punto 6)
+
 export const validationSchema = yup.object().shape({
     name: yup.string().required('Nombre requerido'),
     username: yup.string().required('Usuario requerido'),
