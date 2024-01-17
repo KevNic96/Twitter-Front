@@ -17,6 +17,7 @@ interface SignUpData {
   password: string;
   confirmPassword: string;
 }
+/*
 const SignUpPage = () => {
   const [data, setData] = useState<Partial<SignUpData>>({});
   const [error, setError] = useState(false);
@@ -36,6 +37,32 @@ const SignUpPage = () => {
       .then(() => navigate("/"))
       .catch(() => setError(false));
   };
+*/
+
+const SignUpPage = () =>{
+  const service = useHttpRequestService();
+  const navigate = useNavigate();
+  const { t } = useTranslation();
+  const [error, setError] = useState("");
+  const formik = useFormik<SignUpData>({
+    initialValues: {
+      name: "",
+      username: "",
+      email: "",
+      password: "",
+      confirmPassword: "",
+    },
+    validationSchema: validationSchema,
+    onSubmit: (values: SignUpData) =>{
+      const {confirmPassword, ...requestData} = values;
+      service
+      .signUp(requestData)
+      .then(()=> navigate("/"))
+      .catch((e)=>{
+        setError(e.response.data.errors[0].message);
+      })
+    },
+  });
 
   return (
     <AuthWrapper>
