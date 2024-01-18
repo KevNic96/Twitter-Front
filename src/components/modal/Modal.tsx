@@ -5,6 +5,7 @@ import { ButtonType } from "../button/StyledButton";
 import { StyledModalContainer } from "./ModalContainer";
 import { StyledContainer } from "../common/Container";
 import { StyledH5, StyledP } from "../common/text";
+import ReactDom from "react-dom"
 
 interface ModalProps {
   show: boolean;
@@ -23,41 +24,53 @@ const Modal = ({
   img,
   title,
 }: ModalProps) => {
-  return (
+  const handleOutsideClick = (event: React.MouseEvent) => {
+    if(event.target === event.currentTarget) {
+      onClose();
+    }
+  };
+
+  const PortalElement = document.getElementById("portal");
+  if(!PortalElement){
+    return null;
+  } else {
+    return ReactDom.createPortal(
     <>
       {show && (
-        <StyledBlurredBackground>
-          <StyledModalContainer>
-            <StyledContainer alignItems={"center"} justifyContent={"center"}>
-              {img && (
-                <img src={img} alt={"modal"} width={"32px"} height={"26px"} />
-              )}
-              <StyledContainer
-                alignItems={"center"}
-                justifyContent={"center"}
-                padding={img ? "24px 0 0 0" : "0"}
-                gap={"24px"}
-              >
-                <StyledContainer gap={img ? "8px" : "24px"}>
-                  <StyledH5>{title}</StyledH5>
-                  <StyledP primary={false}>{text}</StyledP>
-                </StyledContainer>
-                <StyledContainer alignItems={"center"}>
-                  {acceptButton}
-                  <Button
-                    buttonType={ButtonType.OUTLINED}
-                    text={"Cancel"}
-                    size={"MEDIUM"}
-                    onClick={onClose}
-                  />
+          <StyledBlurredBackground onClick={handleOutsideClick}>
+            <StyledModalContainer>
+              <StyledContainer alignItems={"center"} justifyContent={"center"}>
+                {img && (
+                  <img src={img} alt={"modal"} width={"32px"} height={"26px"} />
+                )}
+                <StyledContainer
+                  alignItems={"center"}
+                  justifyContent={"center"}
+                  padding={img ? "24px 0 0 0" : "0"}
+                  gap={"24px"}
+                >
+                  <StyledContainer gap={img ? "8px" : "24px"}>
+                    <StyledH5>{title}</StyledH5>
+                    <StyledP primary={false}>{text}</StyledP>
+                  </StyledContainer>
+                  <StyledContainer alignItems={"center"}>
+                    {acceptButton}
+                    <Button
+                      buttonType={ButtonType.OUTLINED}
+                      text={"Cancel"}
+                      size={"MEDIUM"}
+                      onClick={onClose}
+                    />
+                  </StyledContainer>
                 </StyledContainer>
               </StyledContainer>
-            </StyledContainer>
-          </StyledModalContainer>
-        </StyledBlurredBackground>
-      )}
-    </>
-  );
-};
+            </StyledModalContainer>
+          </StyledBlurredBackground>
+        )}
+      </>,
+      PortalElement
+    );
+  };
+}
 
 export default Modal;
