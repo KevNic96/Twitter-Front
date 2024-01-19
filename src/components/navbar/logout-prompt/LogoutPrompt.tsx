@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import SwitchButton from "../../switch/SwitchButton";
 import { ButtonType } from "../../button/StyledButton";
-import { useAppSelector } from "../../../redux/hooks";
+// import { useAppSelector } from "../../../redux/hooks";
 import { StyledPromptContainer } from "./PromptContainer";
 import { StyledContainer } from "../../common/Container";
 import { StyledP } from "../../common/text";
@@ -18,7 +18,7 @@ interface LogoutPromptProps {
 const LogoutPrompt = ({ show }: LogoutPromptProps) => {
   const [showPrompt, setShowPrompt] = useState<boolean>(show);
   const [showModal, setShowModal] = useState<boolean>(false);
-  const user = useAppSelector((state) => state.user.user);
+  // const user = useAppSelector((state) => state.user.user);
   const navigate = useNavigate();
   const { t, i18n } = useTranslation();
   const handleClick = () => {
@@ -60,9 +60,7 @@ const LogoutPrompt = ({ show }: LogoutPromptProps) => {
             />
           </StyledContainer>
           <StyledContainer onClick={handleClick} alignItems={"center"}>
-            <StyledP primary>{`${t("buttons.logout")} @${
-              user.username
-            }`}</StyledP>
+            <StyledP primary>{`${t("buttons.logout")}`}</StyledP>
           </StyledContainer>
         </StyledPromptContainer>
       )}
