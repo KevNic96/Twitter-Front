@@ -11,6 +11,9 @@ import TweetPage from "../../pages/create-tweet-page/TweetPage";
 import CommentPage from "../../pages/create-comment-page/CommentPage";
 import PostPage from "../../pages/post-page/PostPage";
 import { useHttpRequestService } from "../../service/HttpRequestService";
+// chat
+import Loader from "../loader/Loader";
+
 
 /*
 const WithNav = () => {
@@ -27,7 +30,7 @@ const WithNav = () => {
   const token = localStorage.getItem("token")?.split(" ")[1]
   const service = useHttpRequestService()
   const [isValid, setIsValid ] = useState(true)
-  // const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(true)
   useEffect(() => {
     if (token) {
       service.verifyToken(token)
@@ -46,7 +49,7 @@ const WithNav = () => {
 
   return (
     <>
-      {/* {loading && <Loader />} Agregar loading */}
+      {loading && <Loader />} 
       {isValid &&  // Agregar loading
       <>
         <StyledSideBarPageWrapper>
@@ -54,14 +57,10 @@ const WithNav = () => {
           <Outlet />
         </StyledSideBarPageWrapper>
       </>}
-      {!isValid && <Navigate to="/sign-in" replace={true} />} 
-      {/* Agregar loading */}
+      {!loading && !isValid && <Navigate to="/sign-in" replace={true} />}
     </>
   );
 };
-
-
-
 
 export const ROUTER = createBrowserRouter([
   {
