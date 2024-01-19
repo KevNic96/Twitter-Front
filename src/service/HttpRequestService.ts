@@ -6,7 +6,7 @@ import { AxiosInterceptor } from "./Interceptors/axios.interceptors";
 AxiosInterceptor();
 
 const url =
-  process.env.REACT_APP_API_URL || "https://twitter-ieea.onrender.com/api";
+  process.env.REACT_APP_API_URL || "http://localhost:8080/api";
 
 const axiosInstance = axios.create()
 

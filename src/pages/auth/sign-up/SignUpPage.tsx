@@ -122,6 +122,7 @@ const SignUpPage = () =>{
               helperText={formik.touched.confirmPassword && formik.errors.confirmPassword}
             />
           </div>
+          <p className="error-message">{error}</p>
           <div style={{ display: "flex", flexDirection: "column" }}>
             <Button
               text={t("buttons.register")}
@@ -130,7 +131,8 @@ const SignUpPage = () =>{
               // onClick={handleSubmit}
               onClick={(e)=>{
                 e.preventDefault();
-                formik.handleSubmit
+                formik.handleSubmit();
+                // navigate("/sign-up")
               }}
             />
             <Button
