@@ -49,7 +49,7 @@ const WithNav = () => {
 
   return (
     <>
-      {loading && <Loader />} 
+      {loading && <Loader />}
       {isValid &&  // Agregar loading
       <>
         <StyledSideBarPageWrapper>
