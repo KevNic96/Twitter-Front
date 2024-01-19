@@ -25,7 +25,7 @@ export const PostModal = ({ onClose, show, children }: PostModalProps) => {
       <>
       {show && (
         <StyledBlurredBackground onClick={handleClickOutside}>
-          <StyledTweetModalContainer>
+          <StyledTweetModalContainer onClick={e => e.stopPropagation()}>
             {/* onClick? */}
             <ModalCloseButton onClick={onClose} />
             {children}
