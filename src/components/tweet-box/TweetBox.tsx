@@ -19,7 +19,8 @@ import { RootState } from "../../redux/store";
 interface TweetBoxProps{
   parentId?: string,
   close?: () => void,
-  mobile?: boolean
+  mobile?: boolean,
+  borderless?: any
 }
 
 const TweetBox = (props: TweetBoxProps) => {
