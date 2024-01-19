@@ -16,7 +16,7 @@ const initialState: InitalStateType = {
     name: "",
     username: "",
     createdAt: new Date(),
-    private: false,
+    isPrivate: false,
     profilePicture: "",
     following: [],
     followers: [],
