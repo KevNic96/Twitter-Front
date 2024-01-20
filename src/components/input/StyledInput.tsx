@@ -43,14 +43,16 @@ export const StyledInput = styled.input<InputProps>`
 
     background: ${(props) => {
         switch (props.inputType){
+            case "DISABLED":
+                return props.theme.colors.light
+            case "OUTLINED":
+                return props.theme.colors.white;
             case "FULFILLED":
                 return props.theme.colors.main;
-            case "WHITE":
-                return props.theme.colors.white;
-            case "OUTLINED":
-                return props.theme.colors.light;
             case "GHOST":
                 return "transparent";
+            case "WHITE":
+                return props.theme.colors.white;
             default:
                 return props.theme.colors.main;
         }
