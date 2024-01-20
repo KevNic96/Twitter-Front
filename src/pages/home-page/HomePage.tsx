@@ -17,7 +17,7 @@ const HomePage = () => {
   const handleSetUser = async () => {
     try {
       const user = await service.me();
-      const data = await service.getPosts(""); //
+      const data = await service.getPosts(""); //PaginatedPosts?
       dispatch(setUser(user));
       dispatch(updateFeed(data));
     } catch (e) {
