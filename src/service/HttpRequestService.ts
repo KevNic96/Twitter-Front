@@ -42,9 +42,6 @@ const httpRequestService = {
   },
   getPaginatedPosts: async (limit: number, after: string, query: string) => {
     const res = await axios.get(`${url}/post/${query}`, {
-      headers: {
-        Authorization: localStorage.getItem("token"),
-      },
       params: {
         limit,
         after,
@@ -56,19 +53,16 @@ const httpRequestService = {
   },
   getPosts: async (query: string) => {
     const res = await axios.get(`${url}/post/${query}`, {
-      headers: {
-        Authorization: localStorage.getItem("token"),
-      },
+      params:{
+        limit: query[0],
+      }
     });
     if (res.status === 200) {
       return res.data;
     }
   },
   getRecommendedUsers: async (limit: number, skip: number) => {
-    const res = await axios.get(`${url}/user`, {
-      headers: {
-        Authorization: localStorage.getItem("token"),
-      },
+    const res = await axios.get(`${url}/user/`, {
       params: {
         limit,
         skip,
