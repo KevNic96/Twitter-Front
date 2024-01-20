@@ -44,13 +44,13 @@ const WithNav = () => {
     } else {
       setIsValid(false)
     }
-    // setLoading(false)
+    setLoading(false)
   }, [])
 
   return (
     <>
       {loading && <Loader />}
-      {isValid &&  // Agregar loading
+      {isValid &&  !loading &&
       <>
         <StyledSideBarPageWrapper>
           <NavBar />
@@ -98,6 +98,7 @@ export const ROUTER = createBrowserRouter([
         path: "/post/:id",
         element: <CommentPage />,
       },
+      //TODO CHAT PATH HERE
     ],
   },
 ]);
