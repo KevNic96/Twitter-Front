@@ -17,8 +17,8 @@ export const SearchResultModal = ({
       {show && (
         <StyledContainer style={{ width: "100%" }}>
           <StyledSearchResultModalContainer>
-            {(results.length === 0 && <div>No results</div>) ||
-              results.map((author) => {
+            {(results?.length === 0 && <div>No results</div>) ||
+              results?.map((author) => {
                 return (
                   <UserDataBox
                     key={"search-result-" + author.id}
