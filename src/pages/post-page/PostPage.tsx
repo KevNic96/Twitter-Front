@@ -13,7 +13,7 @@ import { useHttpRequestService } from "../../service/HttpRequestService";
 
   const PostPage = () =>{
 
-    const [postId] = useState(window.location.href.split("/")[4]) // setPostId?
+    const [postId, setPostId] = useState(window.location.href.split("/")[4])
     // window.location.href.split : obtiene la URL completa de la ventana y la divide en partes con "/"
     // [4] accede al 5to elemento del array resultante
 
