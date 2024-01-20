@@ -90,12 +90,8 @@ const ProfilePage = () => {
     service
       .getProfile(id)
       .then((res) => {
-        setProfile(res);
-        setFollowing(
-          res
-            ? res?.followers.some((follower: User) => follower.id === user.id)
-            : false
-        );
+        setProfile(res.user);
+        setFollowing(res.following);
       })
       .catch(() => {
         service
@@ -145,7 +141,7 @@ const ProfilePage = () => {
               </StyledContainer>
             </StyledContainer>
             <StyledContainer width={"100%"}>
-              {profile.followers ? (
+              {profile.isPrivate ? (
                 <ProfileFeed />
               ) : (
                 <StyledH5>Private account</StyledH5>
