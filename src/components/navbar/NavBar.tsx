@@ -53,6 +53,7 @@ const NavBar = () => {
             selectedIcon={IconType.ACTIVE_HOME}
             active={location.pathname === "/"}
           />
+          {/* //TODO MESSAGES */}
           <NavItem
             title={t("navbar.profile")}
             onClick={() => {
