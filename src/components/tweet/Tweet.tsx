@@ -34,7 +34,7 @@ const Tweet = ({ post }: TweetProps) => {
       (r) => r.type === type && r.userId === user.id
     );
     if (reacted) {
-      await service.deleteReaction(reacted.id);
+      await service.deleteReaction(reacted.id, type);
     } else {
       await service.createReaction(actualPost.id, type);
     }
@@ -82,6 +82,7 @@ const Tweet = ({ post }: TweetProps) => {
         )}
       </StyledContainer>
       <StyledContainer onClick={() => navigate(`/post/${post.id}`)}>
+        {/* Add pointer? */}
         <p>{post.content}</p>
       </StyledContainer>
       {post.images && post.images!.length > 0 && (
@@ -92,7 +93,7 @@ const Tweet = ({ post }: TweetProps) => {
       <StyledReactionsContainer>
         <Reaction
           img={IconType.CHAT}
-          count={actualPost.comments.length}
+          count={actualPost.qtyComments}
           reactionFunction={() =>
             window.innerWidth > 600
               ? setShowCommentModal(true)
@@ -103,14 +104,14 @@ const Tweet = ({ post }: TweetProps) => {
         />
         <Reaction
           img={IconType.RETWEET}
-          count={getCountByType("RETWEET")}
+          count={actualPost.qtyRetweets}
           reactionFunction={() => handleReaction("RETWEET")}
           increment={1}
           reacted={hasReactedByType("RETWEET")}
         />
         <Reaction
           img={IconType.LIKE}
-          count={getCountByType("LIKE")}
+          count={actualPost.qtyLikes}
           reactionFunction={() => handleReaction("LIKE")}
           increment={1}
           reacted={hasReactedByType("LIKE")}

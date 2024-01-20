@@ -112,10 +112,10 @@ const httpRequestService = {
       return res.data;
     }
   },
-  deleteReaction: async (reactionId: string) => {
-    const res = await axios.delete(`${url}/reaction/${reactionId}`, {
-      headers: {
-        Authorization: localStorage.getItem("token"),
+  deleteReaction: async (postId: string, reaction: string) => {
+    const res = await axios.delete(`${url}/reaction/${postId}`, {
+      params: {
+        type: reaction,
       },
     });
     if (res.status === 200) {
