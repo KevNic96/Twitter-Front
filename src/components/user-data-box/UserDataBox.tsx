@@ -22,7 +22,7 @@ export const UserDataBox = ({
   const navigate = useNavigate();
 
   return (
-    <StyledUserDataBoxContainer onClick={onClick}>
+    <StyledUserDataBoxContainer onClick={() => onClick ? onClick() : navigate (`/profile/${id}`)}>
       <Avatar
         width={"48px"}
         height={"48px"}

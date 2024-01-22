@@ -53,15 +53,23 @@ const NavBar = () => {
             selectedIcon={IconType.ACTIVE_HOME}
             active={location.pathname === "/"}
           />
-          {/* //TODO MESSAGES */}
+          <NavItem
+            title={t("navbar.messages")}
+            onClick={() => {
+              navigate(`/chat/`);
+            }}
+            icon={IconType.MESSAGES}
+            selectedIcon={IconType.ACTIVE_MESSAGES}
+            active={location.pathname === `/chat/`}
+          />
           <NavItem
             title={t("navbar.profile")}
             onClick={() => {
-              navigate(`/profile/${user.id}`);
+              navigate(`/profile/me`);
             }}
             icon={IconType.PROFILE}
             selectedIcon={IconType.ACTIVE_PROFILE}
-            active={location.pathname === `/profile/${user.id}`}
+            active={location.pathname === `/profile/me`}
           />
           <StyledTweetButton
             onClick={() =>
@@ -75,7 +83,7 @@ const NavBar = () => {
         </StyledNavItemsContainer>
         <StyledContainer width={"100%"}>
           <Button
-            text={"Tweet"}
+            text={"Post"}
             size={"180px"}
             buttonType={ButtonType.DEFAULT}
             onClick={() => {

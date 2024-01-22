@@ -18,6 +18,8 @@ export enum IconType {
   SETTINGS = "settings",
   DELETE = "delete",
   ALERT = "alert",
+  MESSAGES = "messages",
+  ACTIVE_MESSAGES = "active_messages"
 }
 
 interface IconProps {
@@ -48,6 +50,9 @@ export const Icon = (props: IconProps) => {
     [IconType.SETTINGS]: <SettingsIcon {...props} />,
     [IconType.DELETE]: <DeleteIcon {...props} />,
     [IconType.ALERT]: <AlertIcon {...props} />,
+    [IconType.MESSAGES]: <MessageIcon {...props} />,
+    [IconType.ACTIVE_MESSAGES]: <ActiveMessageIcon {...props} />,
+
   };
 };
 
