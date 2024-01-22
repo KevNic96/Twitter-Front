@@ -1,14 +1,15 @@
 {
   "header": {
     "home": "Home",
-    "for-you": "For You",
+    "for-you": "For you",
     "following": "Following",
     "connect": "Connect",
     "messages": "Messages"
   },
   "navbar": {
     "home": "Home",
-    "profile": "Profile"
+    "profile": "Profile",
+    "messages": "Messages"
   },
   "suggestion": {
     "who-to-follow": "Who to follow",
@@ -27,8 +28,8 @@
   },
   "placeholder": {
     "new-chat": "Start a new chat",
-    "search": "Search Twitter",
-    "tweet": "What's happening?!",
+    "search": "Search",
+    "tweet": "What is happening?!",
     "send": "Send a new message",
     "comment" : "Tweet your reply"
   },

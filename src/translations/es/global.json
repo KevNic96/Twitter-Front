@@ -1,19 +1,19 @@
 {
   "header": {
     "home": "Principal",
-    "for-you": "Para tí",
-    "following": "Seguidos",
+    "for-you": "Para ti",
+    "following": "Siguiendo",
     "connect": "Conectar",
     "messages": "Mensajes"
   },
   "navbar": {
     "home": "Principal",
     "explore": "Explorar",
-    "message": "Mensajes",
+    "messages": "Mensajes",
     "profile": "Perfil"
   },
   "suggestion": {
-    "who-to-follow": "Recomendaciones",
+    "who-to-follow": "A quién seguir",
     "no-recommendations": "¡Sigue a algunos usuarios para obtener recomendaciones!",
     "show-more": "Mostrar más"
   },
@@ -29,10 +29,10 @@
   },
   "placeholder": {
     "new-chat": "Comenzar un nuevo chat",
-    "search": "Buscar en twitter",
-    "tweet": "¡¿Que está pasando?!",
-    "send": "Envíar un nuevo mensaje",
-    "comment": "Escribe tu respuesta"
+    "search": "Buscar",
+    "tweet": "¡¿Qué está pasando?!",
+    "send": "Escribe un mensaje",
+    "comment": "Postea tu respuesta"
   },
   "error": {
     "login": "Lo siento, tu nombre de usuario o contraseña es incorrecto. Por favor, inténtalo de nuevo."

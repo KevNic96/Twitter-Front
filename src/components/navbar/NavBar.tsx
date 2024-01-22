@@ -83,7 +83,7 @@ const NavBar = () => {
         </StyledNavItemsContainer>
         <StyledContainer width={"100%"}>
           <Button
-            text={"Post"}
+            text={"Tweet"}
             size={"180px"}
             buttonType={ButtonType.DEFAULT}
             onClick={() => {
