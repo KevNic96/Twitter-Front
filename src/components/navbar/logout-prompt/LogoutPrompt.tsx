@@ -10,6 +10,7 @@ import { ButtonType } from "../../button/StyledButton";
 import { StyledPromptContainer } from "./PromptContainer";
 import { StyledContainer } from "../../common/Container";
 import { StyledP } from "../../common/text";
+import { LightTheme, Theme } from "../../../util/LightTheme";
 
 interface LogoutPromptProps {
   show: boolean;
@@ -18,6 +19,7 @@ interface LogoutPromptProps {
 const LogoutPrompt = ({ show }: LogoutPromptProps) => {
   const [showPrompt, setShowPrompt] = useState<boolean>(show);
   const [showModal, setShowModal] = useState<boolean>(false);
+  // const [theme, setTheme] = useState<Partial<Theme>>(LightTheme); Change theme
   // const user = useAppSelector((state) => state.user.user);
   const navigate = useNavigate();
   const { t, i18n } = useTranslation();
@@ -38,9 +40,30 @@ const LogoutPrompt = ({ show }: LogoutPromptProps) => {
     navigate("/sign-in");
   };
 
+/*  const handleBackgroundColorChange = () => {
+    setTheme((prevTheme) => {
+      if(!prevTheme){
+        return LightTheme;
+      }
+
+      return {
+        ...prevTheme as Theme,
+        background: prevTheme.background === LightTheme.background ? (prevTheme.colors ? prevTheme.colors.black : LightTheme.colors!.black) : LightTheme.background,
+      };
+    });
+  }
+*/
   useEffect(() => {
     setShowPrompt(show);
   }, [show]);
+
+  /*
+  useEffect(()=>{
+    if(theme && theme.background)
+    document.body.style.backgroundColor = theme.background;
+    document.body.style.color = theme.colors?.white || LightTheme.colors!.white;
+  },[theme])
+  */
 
   return (
     <>
@@ -58,6 +81,13 @@ const LogoutPrompt = ({ show }: LogoutPromptProps) => {
               checked={i18n.language === "es"}
               onChange={handleLanguageChange}
             />
+            {/*
+            <StyledP primary>Change theme: </StyledP>
+            <SwitchButton
+              checked={theme.background === LightTheme.background}
+              onChange={handleBackgroundColorChange}
+            />
+             */}
           </StyledContainer>
           <StyledContainer onClick={handleClick} alignItems={"center"}>
             <StyledP primary>{`${t("buttons.logout")}`}</StyledP>
