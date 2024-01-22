@@ -99,6 +99,12 @@ export const ROUTER = createBrowserRouter([
         element: <CommentPage />,
       },
       //TODO CHAT PATH HERE
+      /*
+      {
+        path: "/chat",
+        element: <ChatPage />,
+      }
+      */
     ],
   },
 ]);
