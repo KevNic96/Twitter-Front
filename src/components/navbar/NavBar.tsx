@@ -65,11 +65,11 @@ const NavBar = () => {
           <NavItem
             title={t("navbar.profile")}
             onClick={() => {
-              navigate(`/profile/me`);
+              navigate(`/profile/${user.id}`);
             }}
             icon={IconType.PROFILE}
             selectedIcon={IconType.ACTIVE_PROFILE}
-            active={location.pathname === `/profile/me`}
+            active={location.pathname === `/profile/${user.id}`}
           />
           <StyledTweetButton
             onClick={() =>
