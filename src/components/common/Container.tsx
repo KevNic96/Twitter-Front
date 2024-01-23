@@ -5,10 +5,11 @@ type ContainerProps = {
   hoverable?: boolean;
 } & CSSProperties;
 
+// height:100px in ContainerBase eliminated
+
 const ContainerBase = styled.div`
   display: flex;
   flex-direction: column;
-  height: 100%;
   box-sizing: border-box;
   transition: 0.3s ease-in-out;
   position: relative;
