@@ -2,7 +2,7 @@ import React from "react";
 import Avatar from "../common/avatar/Avatar";
 import icon from "../../assets/icon.jpg";
 import { useNavigate } from "react-router-dom";
-import "./UserDataBox.css";
+// import "./UserDataBox.css";
 import { StyledUserDataBoxContainer } from "./UserDataBoxContainer";
 
 interface UserDataBoxProps {
@@ -24,11 +24,11 @@ export const UserDataBox = ({
   return (
     <StyledUserDataBoxContainer onClick={() => onClick ? onClick() : navigate (`/profile/${id}`)}>
       <Avatar
-        width={"48px"}
-        height={"48px"}
+        // width={"48px"}
+        // height={"48px"}
         src={profilePicture ?? icon}
-        onClick={() => onClick ?? navigate(`/profile/${id}`)}
         alt={name ?? "Name"}
+        onClick={() => onClick ?? navigate(`/profile/${id}`)}
       />
       <div>
         <p>{name ?? "Name"}</p>
