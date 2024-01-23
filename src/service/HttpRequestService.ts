@@ -402,6 +402,13 @@ const httpRequestService = {
     }
   },
 
+  getContacts: async () =>{
+    const res = await axios.get(`${url}/message/chat`, {});
+
+    if(res.status === 200){
+      return res.data;
+    }
+  }
 };
 
 const useHttpRequestService = () => httpRequestService;
