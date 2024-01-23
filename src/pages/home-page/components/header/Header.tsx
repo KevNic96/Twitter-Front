@@ -16,7 +16,7 @@ const Header = () => {
         <div className="title-container">
           <img src={user.profilePicture ?? icon} className="icon" alt="Icon" />
           <img src={logo} className="logo" alt="Logo" />
-          <h5>{t("header.home")}</h5>
+          {/* <h5>{t("header.home")}</h5> */}
         </div>
         <TabBar />
       </StyledHeaderContainer>

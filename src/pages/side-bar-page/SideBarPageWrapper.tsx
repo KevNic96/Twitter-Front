@@ -9,8 +9,8 @@ export const StyledSideBarPageWrapper = styled.div`
   width: 100%;
   height: 100%;
   box-sizing: border-box;
-  padding-left: 15%;
-  padding-right: 15%;
+  padding-left: 13%;
+  padding-right: 12%;
 
   @media (max-width: 1200px) {
     justify-content: flex-start;
