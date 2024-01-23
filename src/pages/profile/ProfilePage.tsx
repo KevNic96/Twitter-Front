@@ -81,7 +81,7 @@ ProfilePage = () => {
         });
       } else {
         await service.followUser(id);
-        service.getProfile(id).then((res) => setProfile(res));
+        service.getProfile(id).then((res) => setProfile(res.user));
       }
       return await getProfileData();
     }
