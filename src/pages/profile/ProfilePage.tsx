@@ -144,15 +144,13 @@ ProfilePage = () => {
             <StyledContainer width={"100%"}>
               {profile.isPrivate ? (
                 <StyledH5>
-                <center>These tweets are protected. 
+                <center>These tweets are protected.
                   <h5>This is a private account.</h5>
                   <p>Only approved followers can see this posts. To request access, click Follow.</p>
                 </center>
               </StyledH5>
-                
               ) : (
                 <ProfileFeed />
-                
               )}
             </StyledContainer>
             <Modal
