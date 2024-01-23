@@ -5,8 +5,7 @@ import { AxiosInterceptor } from "./Interceptors/axios.interceptors";
 
 AxiosInterceptor();
 
-const url =
-  process.env.REACT_APP_API_URL || "http://localhost:8080/api";
+const url = process.env.REACT_APP_API_URL || "http://localhost:8080/api";
 
 const axiosInstance = axios.create()
 
@@ -18,6 +17,7 @@ const httpRequestService = {
       return true;
     }
   },
+
   signIn: async (data: SingInData) => {
     const res = await axios.post(`${url}/auth/login`, data);
     if (res.status === 200) {
@@ -25,6 +25,7 @@ const httpRequestService = {
       return true;
     }
   },
+
   createPost: async (data: PostData) => {
     const res = await axios.post(`${url}/post`, data);
     if (res.status === 201) {
@@ -43,6 +44,17 @@ const httpRequestService = {
         Authorization: localStorage.getItem("token"),
       },
     });
+  },
+
+  createComment: async(data: PostData) =>{
+    const res = await axios.post(`${url}/comment/${data.parentId}`,{
+      content: data.content,
+      image: data.images
+    });
+    if(res.status === 201)
+    {
+      return res.data
+    }
   },
 
   getPaginatedPosts: async (limit: number, after: string, query: string) => {
@@ -166,6 +178,21 @@ const httpRequestService = {
     }
   },
 
+  doesFollow: async(id: string) => {
+    const res = await axios.get(`${url}/follower/follow/${id}`, {});
+    if( res.status === 200){
+      return res.data;
+    }
+  },
+
+  getMutualFollows: async () =>{
+    const res = await axios.get(`${url}/follower/mutual`, {});
+
+    if(res.status === 200){
+      return res.data;
+    }
+  },
+
   searchUsers: async (username: string, limit: number, skip: number) => {
     try {
       const cancelToken = axios.CancelToken.source();
@@ -191,7 +218,7 @@ const httpRequestService = {
   },
 
   getProfile: async (id: string) => {
-    const res = await axios.get(`${url}/user/profile/${id}`, {});
+    const res = await axios.get(`${url}/user/${id}`, {});
       // headers: {
       //   Authorization: localStorage.getItem("token"),
       // },
@@ -277,18 +304,6 @@ const httpRequestService = {
     }
   },
 
-  getMutualFollows: async () => {
-    const res = await axios.get(`${url}/follow/mutual`, {});
-    //   headers: {
-    //     Authorization: localStorage.getItem("token"),
-    //   },
-    // });
-
-    if (res.status === 200) {
-      return res.data;
-    }
-  },
-
   createChat: async (id: string) => {
     const res = await axios.post(
       `${url}/chat`,
@@ -337,8 +352,9 @@ const httpRequestService = {
       return res.data;
     }
   },
+
   getCommentsByPostId: async (id: string) => {
-    const res = await axios.get(`${url}/post/comment/by_post/${id}`, {});
+    const res = await axios.get(`${url}/comment/${id}`, {});
     //   headers: {
     //     Authorization: localStorage.getItem("token"),
     //   },
@@ -386,25 +402,13 @@ const httpRequestService = {
     }
   },
 
-  createComment: async(data: PostData) =>{
-    const res = await axios.post(`${url}/comment/${data.parentId}`,{
-      content: data.content,
-      image: data.images
-    });
-    if(res.status === 201)
-    {
-      return res.data
-    }
-  }
-
-
 };
 
 const useHttpRequestService = () => httpRequestService;
 
 // For class component (remove when unused)
-class HttpService {
-  service = httpRequestService;
-}
+// class HttpService {
+//   service = httpRequestService;
+// }
 
-export { useHttpRequestService, HttpService };
+export { useHttpRequestService };
