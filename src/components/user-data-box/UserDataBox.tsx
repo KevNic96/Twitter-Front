@@ -24,11 +24,11 @@ export const UserDataBox = ({
   return (
     <StyledUserDataBoxContainer onClick={() => onClick ? onClick() : navigate (`/profile/${id}`)}>
       <Avatar
-        // width={"48px"}
-        // height={"48px"}
+        width={"48px"}
+        height={"48px"}
         src={profilePicture ?? icon}
-        alt={name ?? "Name"}
         onClick={() => onClick ?? navigate(`/profile/${id}`)}
+        alt={name ?? "Name"}
       />
       <div>
         <p>{name ?? "Name"}</p>
