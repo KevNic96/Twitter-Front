@@ -58,5 +58,10 @@
   "title": {
     "login": "Enter your email or username",
     "register": "Create your account"
+  },
+  "private":{
+    "protected": "These tweets are protected.",
+    "account": "This is a private account.",
+    "follow": "Only approved followers can see this posts. To request access, click Follow."
   }
 }

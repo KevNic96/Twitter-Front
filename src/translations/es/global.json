@@ -59,5 +59,10 @@
   "title": {
     "login": "Ingresa tu correo electrónico o @nombre_de_usuario.",
     "register": "Crea tu cuenta"
+  },
+  "private":{
+    "protected": "Estos tweets estan protegidos.",
+    "account": "Esta es una cuenta privada.",
+    "follow": "Solo seguidores aprobados pueden ver estos tweets. Para solicitar acceso, haga click en Seguir."
   }
 }
