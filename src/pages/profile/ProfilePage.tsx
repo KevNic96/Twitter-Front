@@ -142,7 +142,7 @@ ProfilePage = () => {
               </StyledContainer>
             </StyledContainer>
             <StyledContainer width={"100%"}>
-              {profile.isPrivate ? (
+              {profile.isPrivate && !following ? (
                 <StyledH5>
                 <center>
                   {/* <p>These tweets are protected.</p> */}
