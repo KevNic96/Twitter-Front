@@ -11,7 +11,7 @@ import TweetPage from "../../pages/create-tweet-page/TweetPage";
 import CommentPage from "../../pages/create-comment-page/CommentPage";
 import PostPage from "../../pages/post-page/PostPage";
 import { useHttpRequestService } from "../../service/HttpRequestService";
-// chat
+import ChatPage from "../../pages/chat-page/ChatPage";
 import Loader from "../loader/Loader";
 
 
@@ -99,12 +99,10 @@ export const ROUTER = createBrowserRouter([
         element: <CommentPage />,
       },
       //TODO CHAT PATH HERE
-      /*
       {
         path: "/chat",
         element: <ChatPage />,
       }
-      */
     ],
   },
 ]);

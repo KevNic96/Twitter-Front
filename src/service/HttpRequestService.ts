@@ -93,7 +93,7 @@ const httpRequestService = {
   },
 
   me: async () => {
-    const res = await axios.get(`${url}/user/me`,{});
+    const res = await axios.get(`${url}/user/me`, {});
       /*headers: {
         Authorization: localStorage.getItem("token"),
       },

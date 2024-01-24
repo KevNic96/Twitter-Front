@@ -1,4 +1,6 @@
 import React, {useEffect, useState} from "react";
+import ContactList from "./components/contactList/contactList";
+import Chat from "./components/chat/Chat";
 import { useHttpRequestService } from "../../service/HttpRequestService";
 import { useAppDispatch } from "../../redux/hooks";
 import { setUser } from "../../redux/user";
@@ -20,8 +22,9 @@ const ChatPage = () => {
         try{ 
             const user = await service.me();
             dispatch(setUser(user));
+            console.log(user);
         } catch(e){
-            navigate ("/sign-in");
+            navigate("/sign-in");
         }
     };
 

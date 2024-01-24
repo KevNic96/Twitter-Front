@@ -64,7 +64,8 @@ const MessageContainer = ({ messages, contact, loading }: MessageContainerProps)
                 );
             })}
             </div>
-            </>}
+            </>
+            }
         </StyledMessageContainer>
         );
     };
