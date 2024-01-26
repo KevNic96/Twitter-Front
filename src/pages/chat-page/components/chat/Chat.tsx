@@ -38,18 +38,24 @@ const Chat = ({ contact }: ChatProps) => {
       if (!contact) return console.log("No contact");
       const data = await service.getChat(contact.id);
       setMessages(data);
-      setLoading(false);
     } catch (e) {
       console.log(e);
+    }
+    finally{
+      setLoading(false);
     }
   };
 
   useEffect(() => {
+    console.log("Componente Chat montado");
     socketRef.current = io(`http://localhost:8080?token=${token}`);
 
     if (contact) {
+      console.log("Obteniendo mensajes");
       handleMessages().then();
+
       socketRef.current.on("message", (message) => {
+        console.log("Mensaje recibido: ", message);
         if (!messages.includes(message)) {
           setMessages((messages) => [...messages, message]);
         }
@@ -57,14 +63,15 @@ const Chat = ({ contact }: ChatProps) => {
     }
 
     return () => {
+      console.log("Desmontando componente chat");
       socketRef.current?.disconnect();
     };
   }, [contact]);
 
   const handleSubmit = (content: string) => {
-    if (socketRef.current) {
-      socketRef.current?.emit("message", { to: contact!.id, content });
-    }
+      if (socketRef.current) {
+        socketRef.current?.emit("message", { to: contact!.id, content });
+      }
   };
 
   return (

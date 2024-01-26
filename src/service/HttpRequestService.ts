@@ -323,7 +323,7 @@ const httpRequestService = {
   },
 
   getChat: async (id: string) => {
-    const res = await axios.get(`${url}/chat/${id}`, {
+    const res = await axios.get(`${url}/message/chat/${id}`, {
       headers: {
         Authorization: localStorage.getItem("token"),
       },
