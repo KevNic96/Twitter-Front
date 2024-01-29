@@ -186,7 +186,7 @@ const httpRequestService = {
   },
 
   getMutualFollows: async () =>{
-    const res = await axios.get(`${url}/follower/mutual`, {});
+    const res = await axios.get(`${url}/follower/mutual/`, {});
 
     if(res.status === 200){
       return res.data;
@@ -292,6 +292,7 @@ const httpRequestService = {
     }
   },
 
+  /*
   getChats: async () => {
     const res = await axios.get(`${url}/chat`, {
       headers: {
@@ -303,31 +304,28 @@ const httpRequestService = {
       return res.data;
     }
   },
+  */
 
   createChat: async (id: string) => {
-    const res = await axios.post(
-      `${url}/chat`,
+    const res = await axios.post(`${url}/chat`,
       {
         users: [id],
-      },
-      {
-        headers: {
-          Authorization: localStorage.getItem("token"),
-        },
+      });
+      // {
+      //   headers: {
+      //     Authorization: localStorage.getItem("token"),
+      //   },
+      // }
+      if(res.status === 201){
+        return res.data;
       }
-    );
-
-    if (res.status === 201) {
-      return res.data;
-    }
   },
 
   getChat: async (id: string) => {
-    const res = await axios.get(`${url}/message/chat/${id}`, {
-      headers: {
-        Authorization: localStorage.getItem("token"),
-      },
-    });
+    const res = await axios.get(`${url}/message/chat/${id}`, {});
+      // headers: {
+      //   Authorization: localStorage.getItem("token"),
+      // },
 
     if (res.status === 200) {
       return res.data;
