@@ -30,7 +30,12 @@ const Chat = ({ contact }: ChatProps) => {
   const service = useHttpRequestService();
   const t = useTranslation().t;
   const token = localStorage.getItem("token")?.split(" ")[1];
-  const socketRef = useRef<Socket | null>(null);
+  // const socketRef = useRef<Socket | null>(null);
+  const socket = io('http://localhost:8080',{
+    auth: {
+      token: token,
+    }
+  })
   const [loading, setLoading] = useState<boolean>(true);
 
   const handleMessages = async () => {
@@ -48,29 +53,31 @@ const Chat = ({ contact }: ChatProps) => {
 
   useEffect(() => {
     console.log("Componente Chat montado");
-    socketRef.current = io(`http://localhost:8080?token=${token}`);
+    console.log("Token: ", token);
+    // socketRef.current = io(`http://localhost:8080?token=${token}`);
+    // socketRef.current = io(`http://localhost:8080?token=${token}`, { transports: ['websocket'] });
 
     if (contact) {
       console.log("Obteniendo mensajes");
       handleMessages().then();
 
-      socketRef.current.on("message", (message) => {
+      socket.on("message", (message) => {
         console.log("Mensaje recibido: ", message);
-        if (!messages.includes(message)) {
-          setMessages((messages) => [...messages, message]);
-        }
+        // if (!messages.includes(message)) {
+          setMessages((prevMessages) => [...prevMessages, message]);
+        // }
       });
     }
 
     return () => {
       console.log("Desmontando componente chat");
-      socketRef.current?.disconnect();
+      socket.disconnect();
     };
-  }, [contact]);
+  }, [contact, socket, token]);
 
   const handleSubmit = (content: string) => {
-      if (socketRef.current) {
-        socketRef.current?.emit("message", { to: contact!.id, content });
+      if (socket.active) {
+        socket.emit("message", { to: contact!.id, content });
       }
   };
 
