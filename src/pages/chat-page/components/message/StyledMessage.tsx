@@ -22,7 +22,7 @@ export const StyledMessage = styled.div`
   &.message-sent {
     align-items: flex-end;
     .message-content {
-      background-color: #00b87c;
+      background-color: rgb(74, 153, 233);
       color: white;
       border-bottom-right-radius: 5px;
     }

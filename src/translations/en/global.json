@@ -63,5 +63,10 @@
     "protected": "These tweets are protected.",
     "account": "This is a private account.",
     "follow": "Only approved followers can see this posts. To request access, click Follow."
+  },
+  "message": {
+    "selectContact": "Select a contact to chat.",
+    "noContacts": "You don't have any contacts.",
+    "noMessages": "You don't have any messages."
   }
 }

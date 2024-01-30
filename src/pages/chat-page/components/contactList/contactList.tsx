@@ -49,6 +49,7 @@ const ContactList = ({handleContact} : ContactListProps) => {
         <>
             <StyledContactListContainer>
                 {/* <h5>{t("header.contacts")}</h5> */}
+                <h5>{t("header.messages")}</h5>
                 {loading && <Loader/>}
                 {!loading && contacts.length === 0 && <h4>{t("message.noContacts")}</h4>}
                 {contacts.map((contact)=>{

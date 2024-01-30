@@ -83,7 +83,7 @@ const Chat = ({ contact }: ChatProps) => {
 
   return (
     <StyledChatContainer>
-      {/* <h5>{t("header.messages")}</h5> */}
+      
       {<MessageContainer messages={messages} contact={contact} loading={loading}/>}
       {!loading && contact && <InputMessage handleSendMessage={handleSubmit} />}
     </StyledChatContainer>

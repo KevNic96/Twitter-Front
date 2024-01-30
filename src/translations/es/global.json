@@ -64,5 +64,10 @@
     "protected": "Estos tweets estan protegidos.",
     "account": "Esta es una cuenta privada.",
     "follow": "Solo seguidores aprobados pueden ver estos tweets. Para solicitar acceso, haga click en Seguir."
+  },
+  "message": {
+    "selectContact": "Selecciona un contacto para chatear.",
+    "noContacts": "No tienes contactos.",
+    "noMessages": "No hay mensajes."
   }
 }
